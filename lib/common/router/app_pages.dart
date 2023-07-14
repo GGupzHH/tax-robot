@@ -9,7 +9,7 @@ class AppPages {
   static final routes = [
     GetPage(
         name: AppRoutes.Base,
-        page: () => Robor(),
+        page: () => RobotPage(),
     )
   ];
 }
