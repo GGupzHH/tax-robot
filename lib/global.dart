@@ -13,6 +13,8 @@ class AssetsSvg {
   static const iconEmptySvg = 'assets/svgs/empty.svg';
   static const iconHeaderLogoSvg = 'assets/svgs/header_logo.svg';
   static const iconLogoSvg = 'assets/svgs/logo.svg';
+  static const iconButtonSvg = 'assets/svgs/button_icon.svg';
+  static const iconDownSvg = 'assets/svgs/down_icon.svg';
 }
 
 class GlobalColor {
