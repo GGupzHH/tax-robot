@@ -38,8 +38,9 @@ class RobotPage extends StatelessWidget {
             ),
           ),
           Container(
+            height: 56,
             color: Colors.white,
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(8.0),
             child: Row(
               children: [
                 GestureDetector(
@@ -47,30 +48,30 @@ class RobotPage extends StatelessWidget {
                     // 下拉组件交互逻辑
                   },
                   child: Container(
-  padding: const EdgeInsets.all(10),
-  decoration: BoxDecoration(
-    borderRadius: BorderRadius.circular(8.0),
-  ),
-  child: Row(
-    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-    children: [
-      DropdownButton<String>(
-        value: selectedOption, // 当前选中的选项
-        onChanged: (String? newValue) {
-          // 下拉选项变化时的处理逻辑
-          // 更新选中的选项
-          selectedOption = newValue;
-        },
-        items: dropdownOptions.map((String option) {
-                    return DropdownMenuItem<String>(
-                      value: option,
-                      child: Text(option),
-                    );
-                  }).toList(),
-      ),
-    ],
-  ),
-),
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8.0),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        DropdownButton<String>(
+                          value: selectedOption, // 当前选中的选项
+                          onChanged: (String? newValue) {
+                            // 下拉选项变化时的处理逻辑
+                            // 更新选中的选项
+                            selectedOption = newValue;
+                          },
+                          items: dropdownOptions.map((String option) {
+                                      return DropdownMenuItem<String>(
+                                        value: option,
+                                        child: Text(option),
+                                      );
+                                    }).toList(),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 const SizedBox(width: 8.0),
                 Expanded(
@@ -114,7 +115,6 @@ class RobotPage extends StatelessWidget {
               ],
             ),
           )
-
         ],
       ),
     );
@@ -123,33 +123,49 @@ class RobotPage extends StatelessWidget {
   Widget _buildMessage(String role, String content) {
     final isUser = role == 'user';
 
-    return Row(
-      mainAxisAlignment: isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
-      children: [
-        if (!isUser)
-          SvgPicture.asset(
-            AssetsSvg.iconAvatarRobotSvg,
-            width: 36,
-          ),
-        Container(
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: isUser ? GlobalColor.themeColor : Colors.white,
-          ),
-          child: Text(
-            content,
-            style: TextStyle(
-              color: isUser ? Colors.white : createMaterialColor(const Color(0xff303133)),
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+      child: Row(
+        mainAxisAlignment: isUser ? MainAxisAlignment.end : MainAxisAlignment.start,
+        children: [
+          if (!isUser) ...[
+            Padding(
+              padding: const EdgeInsets.only(right: 8),
+              child: SvgPicture.asset(
+                AssetsSvg.iconAvatarRobotSvg,
+                width: 36,
+              ),
+            )
+          ] else ... [
+            SizedBox(
+              width: 52,
+            )
+          ],
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: isUser ? GlobalColor.themeColor : Colors.white,
+              ),
+              child: Text(
+                content,
+                style: TextStyle(
+                  color: isUser ? Colors.white : createMaterialColor(const Color(0xff303133)),
+                ),
+              ),
             ),
           ),
-        ),
-        if (isUser)
-          SvgPicture.asset(
-            AssetsSvg.iconAvatarUserSvg,
-            width: 36,
-          ),
-      ],
+          if (isUser)
+            Padding(
+              padding: const EdgeInsets.only(left: 8),
+              child: SvgPicture.asset(
+                AssetsSvg.iconAvatarUserSvg,
+                width: 36,
+              ),
+            ),
+        ],
+      ),
     );
   }
 }

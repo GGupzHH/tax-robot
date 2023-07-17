@@ -10,7 +10,7 @@ class RobotController extends GetxController {
     },
     {
       'role': 'assistant',
-      'content': '请问你有什么问题',
+      'content': '请问你有什么问题请问你有什么问题请问你有什么问题请问你有什么问题请问你有什么问题请问你有什么问题请问你有什么问题请问你有什么问题请问你有什么问题请问你有什么问题请问你有什么问题请问你有什么问题',
     },
   ];
 
